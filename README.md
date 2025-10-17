@@ -1,0 +1,17 @@
+- Verifier domaine avec resend une fois finis
+- ✅Creer Logo
+- Creer header (logo + button de connexion)
+- Styliser mon dashboard
+- Creer section successed goal
+- Ajouter tout les goals realisé dans un section (successed goal) => chaque goal doit avoir date de reussite (completedAt), objectif (text), term (term => court, moyen, long)
+- ✅ Ajouter animation sur hero (homePage)
+- ✅ Creer un animation pour quand on check un goal => message de felicitation
+- ✅ Faire en sorte que mon QuoteModal s'affiche que 1 fois / jour apres la connexion, pas à chaque connexion === DONE?
+- ✅ Creer animation sur bouton ' Citation du jour' == DONE
+- Faire style de 'register' comme 'login'
+- Ajouter courbe (line) pour les objectifs realisé / jour sur les 7 derniers jours (adapté le delai de temps (7j - 15j - 30j)) => enregistrer dans la db
+- Ajouter une parti oû l'on voit tout les objectifs realisé depuis le debut (statsSection)
+- ✅ Creer un modal de de felicitation pour chaque goal realisé (apparation pour chaque goal checked)
+- Creer et ajouter un footer a chaque page => renvoie sur mon site (mon nom) => (✨ VisionBoard — transforme tes intentions en actions.)
+
+- Pour les courbes des objectfis (graphique) ajouter 1 couleur unique pour chaque terme (court (vert), moyen (bleu), long(rouge)), et dans le graphique afficher une courbe / terme => dans ce style la (https://www.piloter.org/excel/kpi-excel/courbes-aires.htm)

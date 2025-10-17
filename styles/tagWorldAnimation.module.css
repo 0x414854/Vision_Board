@@ -1,0 +1,170 @@
+:root {
+  --tagcloud-transition-duration: 250ms;
+  --tagcloud-transition-ease: ease-out;
+  --tagcloud-bg-color-rgb: 160, 160, 160;
+  /* --tagcloud-bg-color-rgb: 0, 0, 0;  => version DARK*/
+  --tagcloud-animation-duration: 25s;
+  --tagcloud-animation-direction: normal;
+  --tagcloud-animation-play-state: running;
+  --tagcloud-diameter: 17rem;
+  --tag-diameter: 5rem;
+  --tag-font-color-rgb: 0, 0, 0;
+  /* --tag-font-color-rgb: 255, 255, 255;  => version DARK*/
+  --tag-font-family: "Poppins", sans-serif;
+  --tag-font-size: 1rem;
+}
+
+.tagcloudWrapper {
+  perspective: calc(var(--tagcloud-diameter) * 2);
+  transform-style: preserve-3d;
+  background: radial-gradient(
+    rgba(var(--tagcloud-bg-color-rgb), 0.3) 20%,
+    rgba(var(--tagcloud-bg-color-rgb), 0) 75%
+  );
+  width: var(--tagcloud-diameter);
+  height: var(--tagcloud-diameter);
+  border-radius: 50%;
+  font-family: var(--tag-font-family);
+  font-size: var(--tag-font-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.tagcloudWrapper:hover {
+  --tagcloud-animation-play-state: paused;
+}
+
+.tagcloud {
+  list-style-type: none;
+  width: var(--tagcloud-diameter);
+  height: var(--tagcloud-diameter);
+  position: relative;
+  transform-style: inherit;
+  --radius: calc(
+    calc(var(--tagcloud-diameter) / 2) - calc(var(--tag-diameter) / 2)
+  );
+  animation: tagcloud-rotation var(--tagcloud-animation-duration)
+    var(--tagcloud-animation-direction) linear infinite
+    var(--tagcloud-animation-play-state);
+}
+
+@keyframes tagcloud-rotation {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
+.tagcloudTag {
+  --phi: acos(calc(-1 + (2 * var(--index)) / var(--num-elements)));
+  --theta: calc(
+    sqrt(calc(var(--num-elements) * 3.141592653589793)) * var(--phi)
+  );
+  --x: calc(cos(var(--theta)) * sin(var(--phi)));
+  --y: calc(sin(var(--theta)) * sin(var(--phi)));
+  --z: calc(cos(var(--phi)));
+  --vector-length: sqrt(
+    var(--x) * var(--x) + var(--y) * var(--y) + var(--z) * var(--z)
+  );
+  --normalized-x: calc(var(--x) / var(--vector-length));
+  --normalized-y: calc(var(--y) / var(--vector-length));
+  --normalized-z: calc(var(--z) / var(--vector-length));
+  --scaled-x: calc(var(--normalized-x) * var(--radius));
+  --scaled-y: calc(var(--normalized-y) * var(--radius));
+  --scaled-z: calc(var(--normalized-z) * var(--radius));
+  --final-x: calc(var(--scaled-x) + var(--radius));
+  --final-y: calc(var(--scaled-y) + var(--radius));
+  --final-z: var(--scaled-z);
+  pointer-events: none;
+  width: var(--tag-diameter);
+  height: var(--tag-diameter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate3d(var(--final-x), var(--final-y), var(--final-z));
+  animation: tagcloud-tag-rotation var(--tagcloud-animation-duration)
+    var(--tagcloud-animation-direction) linear infinite
+    var(--tagcloud-animation-play-state);
+}
+
+@keyframes tagcloud-tag-rotation {
+  from {
+    transform: translate3d(var(--final-x), var(--final-y), var(--final-z))
+      rotateX(360deg) rotateY(360deg);
+  }
+  to {
+    transform: translate3d(var(--final-x), var(--final-y), var(--final-z))
+      rotateX(0deg) rotateY(0deg);
+  }
+}
+
+/* Quand un span est hover, tous les autres deviennent translucides */
+.tagcloud-wrapper:has(.tagcloudTag span:hover) .tagcloudTag span:not(:hover) {
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+}
+
+/* Ton style normal */
+.tagcloudTag span {
+  pointer-events: initial;
+  color: rgb(var(--tag-font-color-rgb));
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+/* L’effet de survol sur le mot choisi */
+.tagcloudTag span:hover {
+  transform: scale(1.2);
+  color: #ffd700;
+  opacity: 1;
+}
+
+@media (min-width: 360px) {
+  :root {
+    --tagcloud-diameter: 20rem;
+  }
+}
+@media (min-width: 375px) {
+  :root {
+    --tagcloud-diameter: 21rem;
+  }
+}
+@media (min-width: 574px) {
+  :root {
+    --tagcloud-diameter: 25rem;
+    --tag-font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --tagcloud-diameter: 30rem;
+    --tag-font-size: 1.2rem;
+  }
+}
+@media (min-width: 912px) {
+  :root {
+    --tagcloud-diameter: 25rem;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --tagcloud-diameter: 34rem;
+  }
+}
+
+/* Désactiver la pause sur mobile (pas de hover réel) */
+@media (hover: none) and (pointer: coarse) {
+  .tagcloudWrapper:hover {
+    --tagcloud-animation-play-state: running;
+  }
+}

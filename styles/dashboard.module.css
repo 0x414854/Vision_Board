@@ -1,0 +1,791 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--title-gradient);
+  min-height: 100vh;
+  gap: 40px;
+  background-size: 800% 800%; /* pour l'animation fluide */
+  animation: gradientAnimation 10s ease infinite;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background: var(--white);
+}
+
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  color: black;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+.userInfo h1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-15);
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background: rebeccapurple; */
+}
+/* ffd700 */
+.quoteButton {
+  position: relative;
+  width: 60%;
+  background: white no-repeat;
+  background-size: 300%;
+  background-position: left center;
+  transition: background 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: var(--black);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: var(--fs-1);
+  cursor: pointer;
+  overflow: hidden;
+}
+.quoteButton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  background-color: #ffd700;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(12px);
+  animation: button-animation 6s linear infinite;
+}
+
+.quoteButton::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 99%;
+  height: 96%;
+  background-color: transparent;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.quoteButton:hover::before {
+  width: 100%;
+  height: 100%;
+  animation-play-state: paused;
+}
+
+.logoutBtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: var(--fs-1);
+  cursor: pointer;
+}
+.logoutBtn:hover {
+  background: #de2222;
+}
+
+/* WHY SECTION */
+.whySection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: var(--white);
+}
+.why {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.whyContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.whyContainer h2 {
+  font-size: var(--fs-13);
+}
+.whyContainer button {
+  font-size: var(--fs-1);
+  background: none;
+  color: var(--black);
+  border: 1px solid transparent;
+  padding: 0 8px;
+  border-radius: 20px;
+}
+.whyContainer button:hover {
+  /* border: 1px solid black; */
+  transform: scale(1.2);
+}
+.newWhy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 10px;
+}
+.newWhy input {
+  width: 80%;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 0;
+  color: var(--black);
+  font-size: var(--fs-1);
+}
+.newWhy button {
+  width: 30px;
+  height: 30px;
+  font-size: var(--fs-1);
+  background: var(--title-gradient);
+  color: var(--black);
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+.newWhy button:hover,
+.newWhy button:focus {
+  transform: scale(1.2);
+}
+
+/* .whySection textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 8px;
+} */
+
+.whysList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 20px;
+  border-radius: 20px;
+}
+.whyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 5px 10px;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+.whyItem:hover {
+  box-shadow: 0 0 2px rgba(67, 67, 67, 0.533);
+  transform: translateY(-4px);
+  transition: all 0.3s ease;
+}
+
+.whyItem span {
+  text-align: start;
+  font-size: var(--fs-1);
+  font-weight: bold;
+}
+.whyItem button {
+  border: none;
+  background: none;
+  opacity: 0;
+  font-size: var(--fs-1);
+  transition: opacity 0.3s ease;
+}
+.whyItem:hover button {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.statsSection {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid black;
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.stats h3 {
+  font-size: var(--fs-12);
+}
+.stats p {
+  font-size: var(--fs-1);
+}
+.goalsSection {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: var(--white);
+}
+.goalsSection h2 {
+  font-size: var(--fs-13);
+}
+.newGoal {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.newGoal input {
+  width: 100%;
+  background: var(--white);
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 0;
+  color: var(--black);
+  font-size: var(--fs-1);
+}
+.newGoal select {
+  font-size: var(--fs-1);
+}
+.newGoal div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.newGoal div select {
+  width: 55%;
+  padding: 5px 10px;
+  background: var(--white);
+  color: var(--black);
+  border-radius: 10px;
+}
+.newGoal div button {
+  width: 40%;
+  border: none;
+  padding: 5px 10px;
+  background: var(--title-gradient);
+  color: var(--black);
+  border-radius: 10px;
+}
+
+.addGoal button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.goalsContainer {
+  flex-direction: column;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.termRow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.termRow h3 {
+  width: 100%;
+  font-size: var(--fs-12);
+  text-align: center;
+}
+.termRow ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* align-items: ; */
+}
+.goalItem {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.goalItem:hover .goalActions button {
+  opacity: 1;
+}
+.goalActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.goalActions input {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.goalActions button {
+  background: none;
+  border: none;
+  font-size: var(--fs-1);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+.goalActions button:hover,
+.goalActions button:focus {
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+.goalColumn {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.goal {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.goalDone {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.quoteSection {
+  background: #fff8dc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+@media (min-width: 384px) {
+  .buttons {
+    flex-direction: row;
+  }
+}
+@media (min-width: 574px) {
+  .header {
+    flex-direction: row;
+    gap: 0;
+  }
+  .userInfo {
+    width: 60%;
+  }
+  .userInfo h1 {
+    font-size: var(--fs-17);
+  }
+  .buttons {
+    width: 40%;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .quoteButton {
+    width: 80%;
+    font-size: var(--fs-105);
+  }
+  .logoutBtn {
+    font-size: var(--fs-105);
+  }
+  .whyContainer h2 {
+    font-size: var(--fs-145);
+  }
+  .newWhy input {
+    width: 90%;
+    font-size: var(--fs-105);
+  }
+  .newWhy button {
+    font-size: var(--fs-105);
+  }
+  .whyItem span {
+    font-size: var(--fs-105);
+  }
+  .whyItem button {
+    font-size: var(--fs-105);
+  }
+  .stats h3 {
+    font-size: var(--fs-125);
+  }
+  .stats p {
+    font-size: var(--fs-105);
+  }
+  .goalsSection h2 {
+    font-size: var(--fs-145);
+  }
+  .newGoal input,
+  .newGoal select,
+  .newGoal div button {
+    font-size: var(--fs-105);
+  }
+  .newGoal div select {
+    width: 40%;
+  }
+  .newGoal div button {
+    width: 30%;
+  }
+  .termRow h3 {
+    font-size: var(--fs-125);
+  }
+  .goalItem,
+  .goalActions button {
+    font-size: var(--fs-105);
+  }
+}
+
+@media (min-width: 768px) {
+  .userInfo h1 {
+    font-size: var(--fs-19);
+  }
+  .buttons {
+    width: 40%;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .quoteButton {
+    width: 70%;
+    font-size: var(--fs-11);
+  }
+  .logoutBtn {
+    font-size: var(--fs-11);
+  }
+  .why {
+    flex-direction: row;
+    align-items: center;
+  }
+  .whyContainer h2 {
+    font-size: var(--fs-16);
+  }
+  .newWhy {
+    width: 75%;
+  }
+  .newWhy input {
+    width: 100%;
+    font-size: var(--fs-11);
+  }
+  .newWhy button {
+    font-size: var(--fs-11);
+  }
+  .whyItem span {
+    font-size: var(--fs-11);
+  }
+  .whyItem button {
+    font-size: var(--fs-11);
+  }
+  .stats h3 {
+    font-size: var(--fs-135);
+  }
+  .stats p {
+    font-size: var(--fs-11);
+  }
+  .goalsSection h2 {
+    font-size: var(--fs-16);
+  }
+  .newGoal {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .newGoal input,
+  .newGoal select,
+  .newGoal div button {
+    font-size: var(--fs-11);
+  }
+  .newGoal input {
+    width: 60%;
+  }
+  .newGoal div {
+    width: 45%;
+    gap: 10px;
+  }
+  .newGoal div select {
+    width: 55%;
+  }
+  .newGoal div button {
+    width: 40%;
+  }
+
+  .termRow h3 {
+    font-size: var(--fs-135);
+  }
+  .goalItem,
+  .goalActions button {
+    font-size: var(--fs-11);
+  }
+}
+
+@media (min-width: 820px) {
+  .userInfo {
+    gap: 30px;
+  }
+}
+
+@media (min-width: 912px) {
+  .buttons {
+    width: 45%;
+    flex-direction: row;
+  }
+  .newWhy {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .userInfo {
+    gap: 30px;
+  }
+  .userInfo h1 {
+    font-size: var(--fs-21);
+  }
+  .quoteButton {
+    width: 50%;
+    font-size: var(--fs-115);
+  }
+  .logoutBtn {
+    font-size: var(--fs-115);
+  }
+  .why {
+    flex-direction: row;
+    align-items: center;
+  }
+  .whyContainer h2 {
+    font-size: var(--fs-18);
+  }
+  .newWhy {
+    width: 80%;
+  }
+  .newWhy input,
+  .newWhy button {
+    font-size: var(--fs-115);
+  }
+  .whyItem span,
+  .whyItem button {
+    font-size: var(--fs-115);
+  }
+  .stats h3 {
+    font-size: var(--fs-145);
+  }
+  .stats p {
+    font-size: var(--fs-115);
+  }
+  .goalsSection h2 {
+    font-size: var(--fs-18);
+  }
+  .newGoal {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .newGoal input,
+  .newGoal select,
+  .newGoal div button {
+    font-size: var(--fs-115);
+  }
+  .newGoal input {
+    width: 65%;
+  }
+  .newGoal div {
+    width: 35%;
+  }
+  .goalsContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  .termRow {
+    width: 48%;
+    min-height: 200px;
+    position: relative;
+  }
+  .termRow:last-child {
+    width: 80%;
+  }
+
+  .termRow h3 {
+    font-size: var(--fs-135);
+  }
+  .goalItem {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  .goalItem,
+  .goalActions button {
+    font-size: var(--fs-115);
+  }
+  .goalActions {
+    gap: 10px;
+  }
+}
+@media (min-width: 1280px) {
+  .userInfo h1 {
+    font-size: var(--fs-24);
+  }
+  .quoteButton {
+    width: 40%;
+    font-size: var(--fs-12);
+  }
+  .logoutBtn {
+    font-size: var(--fs-12);
+  }
+  .why {
+    flex-direction: row;
+    align-items: center;
+  }
+  .whyContainer h2 {
+    font-size: var(--fs-2);
+  }
+  .newWhy {
+    width: 83%;
+  }
+  .newWhy input,
+  .newWhy button {
+    font-size: var(--fs-12);
+  }
+  .whyItem span,
+  .whyItem button {
+    font-size: var(--fs-12);
+  }
+  .stats h3 {
+    font-size: var(--fs-16);
+  }
+  .stats p {
+    font-size: var(--fs-12);
+  }
+  .goalsSection h2 {
+    font-size: var(--fs-2);
+  }
+  .newGoal {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .newGoal input,
+  .newGoal select,
+  .newGoal div button {
+    font-size: var(--fs-12);
+  }
+  .newGoal input {
+    width: 70%;
+  }
+  .newGoal div {
+    width: 30%;
+  }
+  .goalsContainer {
+    gap: 40px;
+  }
+  .termRow {
+    width: 31%;
+  }
+  .termRow:last-child {
+    width: 31%;
+  }
+  /* .termRow:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    height: 90%;
+    width: 2px;
+    background: black;
+    left: -20px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .termRow:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    height: 90%;
+    width: 2px;
+    background: black;
+    right: -20px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  } */
+
+  .termRow h3 {
+    font-size: var(--fs-16);
+  }
+  .goalItem {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  .goalItem,
+  .goalActions button {
+    font-size: var(--fs-12);
+  }
+  .goalActions {
+    gap: 10px;
+  }
+}
+/* KEYFRAMES */
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes button-animation {
+  0% {
+    left: 0;
+    top: 0;
+  }
+
+  35% {
+    left: 100%;
+    top: 0;
+  }
+
+  50% {
+    left: 100%;
+    top: 100%;
+  }
+
+  85% {
+    left: 0%;
+    top: 100%;
+  }
+}

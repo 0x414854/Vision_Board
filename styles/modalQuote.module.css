@@ -1,0 +1,101 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeInOverlay 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8) translateY(1000px);
+  opacity: 0;
+  animation: scaleUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--black);
+  font-weight: bold;
+}
+
+.content {
+  font-size: var(--fs-1);
+}
+
+.author {
+  font-size: var(--fs-1);
+  color: #555;
+  text-align: end;
+}
+
+/* Animations */
+@keyframes fadeInOverlay {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes fadeOutOverlay {
+  0% {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes scaleUpModal {
+  0% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleDownModal {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+}
+
+/* Classe de fermeture pour animation out */
+.overlay.out {
+  animation: fadeOutOverlay 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.out {
+  animation: scaleDownModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
